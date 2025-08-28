@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.author       = { 'AllenGe' => 'gyjshow@163.com' }
 
   s.ios.deployment_target = '12.0'
-  s.source       = { :git => 'https://github.com/AllenGe/VoiceConvert.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/AllenGe/VoiceConvert.git', :tag => s.version }
 
   # 核心源文件
   s.source_files = [
