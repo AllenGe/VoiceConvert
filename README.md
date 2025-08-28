@@ -3,7 +3,7 @@
 
 ###pod
 
-pod 'VoiceConvert',:git => "https://github.com/AwakenDragon/VoiceConvert.git"
+pod 'VoiceConvert',:git => "https://github.com/AllenGe/VoiceConvert.git"
 
 ###引入
 
