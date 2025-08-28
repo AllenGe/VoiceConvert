@@ -1,24 +1,28 @@
-Pod::Spec.new do |s|
-  s.name             = 'VoiceConvert'
-  s.version          = '0.1.0'
-  s.summary          = 'iOS 音频文件格式转换库'
-  s.description      = <<-DESC
-    VoiceConvert 是一个支持 AMR <-> WAV 转换的 iOS 库，支持录音与播放，非常方便。
-  DESC
+Pod::Spec.new do |spec|
+  spec.name         = "VoiceConvert"
+  spec.version      = "0.1.0"
+  spec.summary      = "WAV、AMR音频格式相互转换"
 
-  s.homepage         = 'https://github.com/AllenGe/VoiceConvert'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'AllenGe' => 'gyjshow@163.com' }
-  s.source           = { :git => 'https://github.com/AllenGe/VoiceConvert.git', :tag => s.version }
+  spec.description      = <<-DESC
+      VoiceConvert 是一个支持 AMR <-> WAV 转换的 iOS 库，支持录音与播放，非常方便。
+    DESC
 
-  s.ios.deployment_target = '11.0'
 
-  # 包含 VoiceConvert 目录下的所有源码文件
-  s.source_files     = 'VoiceConvert/**/*.{h,m,mm,c,cpp}'
+  spec.homepage         = 'https://github.com/AllenGe/VoiceConvert'
+  spec.license          = { :type => 'MIT', :file => 'LICENSE' }
+  spec.author           = { 'AllenGe' => 'gyjshow@163.com' }
+  spec.source           = { :git => 'https://github.com/AllenGe/VoiceConvert.git', :tag => s.version }
 
-  # 如果有 C++ 代码，需要加上标准库设置
-  s.pod_target_xcconfig = {
-    'CLANG_CXX_LANGUAGE_STANDARD' => 'c++11',
-    'CLANG_CXX_LIBRARY' => 'libc++'
-  }
+  spec.platform     = :ios
+  spec.platform     = :ios, "12.0"
+   
+  spec.source_files  = "VoiceConvert/**/*.{h,mm}"
+   
+  spec.public_header_files = "VoiceConvert/**/*.h"
+
+ 
+  spec.libraries = 'c++'
+  spec.vendored_library = 'opencore-amrnb/libopencore-amrnb.a', 'opencore-amrwb/libopencore-amrwb.a'
+  
+
 end
