@@ -1,44 +1,73 @@
+#
+#  Be sure to run `pod spec lint VoiceConvert.podspec' to ensure this is a
+#  valid spec and to remove all comments including this before submitting the spec.
+#
+#  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
+#  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
+#
+
 Pod::Spec.new do |s|
-  s.name         = 'VoiceConvert'
-  s.version      = '0.1.0'
-  s.summary      = 'A short description of VoiceConvert.'
-  s.description  = <<-DESC
-                    AMR/WAV 音频转换工具，基于开源编解码器实现。
-                   DESC
-  s.homepage     = 'https://github.com/AllenGe/VoiceConvert'
-  s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.author       = { 'AllenGe' => 'gyjshow@163.com' }
 
-  s.ios.deployment_target = '12.0'
-  s.source       = { :git => 'https://github.com/AllenGe/VoiceConvert.git', :tag => s.version }
+  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  These will help people to find your library, and whilst it
+  #  can feel like a chore to fill in it's definitely to your advantage. The
+  #  summary should be tweet-length, and the description more in depth.
+  #
 
-  # 核心源文件
-  s.source_files = [
-    'EMVoiceConverter.{h,mm}',
-    'amrFileCodec.{h,mm}',
-    'wav.{h,mm}'
-  ]
+  s.name         = "VoiceConvert"
+  s.version      = "0.0.1"
+  s.summary      = "iOS音频文件转换"
+  s.homepage     = "https://github.com/AllenGe/VoiceConvert"
+
+  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.license      = "MIT"
+
+
+  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.author             = { "AllenGe" => "gyjshow@163.com" }
+
+  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.platform     = :ios, "12.0"
+
+  #  When using multiple platforms
+  # s.ios.deployment_target = "12.0"
+  # s.osx.deployment_target = "10.10.4"
+  # s.watchos.deployment_target = "1.0.1"
+
+
+  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.source       = { :git => "https://github.com/AllenGe/VoiceConvert.git",:tag => s.version.to_s}
+
+
+  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.subspec 'VoiceConvert' do |voiceConvert|
+      voiceConvert.source_files = 'VoiceConvert/VoiceConvert/**/*'
+      voiceConvert.public_header_files = 'VoiceConvert/VoiceConvert/**/*.h'
+  end
+
+  s.subspec 'amrwapper' do |amrwapper|
+      amrwapper.source_files = 'VoiceConvert/amrwapper/**/*'
+      amrwapper.public_header_files = 'VoiceConvert/amrwapper/**/*.h'
+  end
+
+  s.subspec 'opencore-amrnb' do |opencore_amrnb|
+      opencore_amrnb.source_files = 'VoiceConvert/opencore-amrnb/**/*'
+      opencore_amrnb.public_header_files = 'VoiceConvert/opencore-amrnb/**/*.h'
+  end
+
+  s.subspec 'opencore-amrwb' do |opencore_amrwb|
+      opencore_amrwb.source_files = 'VoiceConvert/opencore-amrwb/**/*'
+      opencore_amrwb.public_header_files = 'VoiceConvert/opencore-amrwb/**/*.h'
+  end
+
+  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.frameworks = "Foundation"
+  s.vendored_libraries = ['VoiceConvert/opencore-amrnb/libopencore-amrnb.a',
+                          'VoiceConvert/opencore-amrwb/libopencore-amrwb.a']
+
+
+  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.requires_arc = true
   
-  # 开源库头文件
-  s.preserve_paths = [
-    'opencore-amrnb/interf_dec.h',
-    'opencore-amrnb/interf_enc.h',
-    'opencore-amrwb/dec_if.h',
-    'opencore-amrwb/if_rom.h'
-  ]
-
-  # 静态库配置
-  s.ios.vendored_libraries = [
-    'opencore-amrnb/libopencore-amrnb.a',
-    'opencore-amrwb/libopencore-amrwb.a'
-  ]
-
-  # 头文件搜索路径
-  s.xcconfig = {
-    'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/VoiceConvert/opencore-amrnb" "${PODS_ROOT}/VoiceConvert/opencore-amrwb"'
-  }
-
-  # 确保使用正确的编译器
-  s.requires_arc = false
-  s.libraries = 'c++'
 end
