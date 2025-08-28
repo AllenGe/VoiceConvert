@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.homepage         = 'https://github.com/AllenGe/VoiceConvert'
   spec.license          = { :type => 'MIT', :file => 'LICENSE' }
   spec.author           = { 'AllenGe' => 'gyjshow@163.com' }
-  spec.source           = { :git => 'https://github.com/AllenGe/VoiceConvert.git', :tag => s.version }
+  spec.source           = { :git => 'https://github.com/AllenGe/VoiceConvert.git', :tag => spec.version }
 
   spec.platform     = :ios
   spec.platform     = :ios, "12.0"
